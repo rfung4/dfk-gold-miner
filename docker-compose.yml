@@ -1,0 +1,65 @@
+version: '3.1'
+
+services:
+
+    rabbitmq:
+        image: rabbitmq:3-management-alpine
+        container_name: rabbitmq
+        restart: always
+        volumes:
+            - web-data:/usr/src/app/static
+            - ./rabbitmq/etc/:/etc/rabbitmq/
+            - ./rabbitmq/data/:/var/lib/rabbitmq/
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+
+    worker:
+        container_name: worker
+        restart: always
+        command: celery --app=web.src.celery:celery worker # --worker-class=gevent
+        env_file:
+            - .env
+        links:
+            - rabbitmq
+        volumes:
+            - .:/code
+        build:
+            context: .
+            dockerfile: web/Dockerfile
+
+        depends_on:
+            -   rabbitmq
+
+    celery-beat:
+        container_name: celery_beat
+        command: celery -A web.src.beat beat -l DEBUG
+        restart: always
+        env_file:
+            - .env
+        links:
+            - rabbitmq
+        volumes:
+            - .:/code
+        build:
+            context: .
+            dockerfile: web/Dockerfile
+
+        depends_on:
+            - rabbitmq
+
+    postgres:
+        container_name: postgres
+        image: postgres:13.6
+        command: postgres
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: password
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/data
+
+volumes:
+  web-data:
