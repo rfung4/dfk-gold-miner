@@ -2,12 +2,11 @@ import time
 
 from definitions import XP_INTERVALS, GAS_PRICE_GWEI, DFK_CHAIN_RPC
 from web.src.db.ORM.dfk_orm import Account
-import dfktools.meditation.meditation as meditation
-
-from web.src.disc.webhook import send_discord_message
 from web.src.encrypt.encrypt import decrypt_bytes
 from web.src.static.loggers import logger
 from web.src.w3_ import w3
+
+import dfktools.meditation.meditation as meditation
 
 
 def xp_to_level(xp: int) -> int:
@@ -44,7 +43,6 @@ def level_up_hero(account: Account, hero_id: int):
                                     GAS_PRICE_GWEI, 30, DFK_CHAIN_RPC, logger)
     except Exception as e:
         logger.critical('Exception on starting meditation : %s' % str(e))
-        send_discord_message("Failed to start level up for hero : %s" % str(e))
         return
 
     time.sleep(20)
@@ -55,5 +53,3 @@ def level_up_hero(account: Account, hero_id: int):
                                        GAS_PRICE_GWEI, 30, DFK_CHAIN_RPC, logger)
     except Exception as e:
         logger.critical('Exception on ending meditation : %s' % str(e))
-        send_discord_message("Failed to finish level up for hero : %s" % str(e))
-

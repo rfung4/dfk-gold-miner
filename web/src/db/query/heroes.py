@@ -9,8 +9,9 @@ from web.src.db.db import dfk_session_creator
 from web.src.db.query.accounts import get_accounts
 from web.src.dfk_.heroes.hero import crystalvale_heroes
 from web.src.static.loggers import logger
-from dfktools.quests.professions.mining import CRYSTALVALE_GOLD_QUEST_CONTRACT_ADDRESS
 from web.src.dfk_.quest import questV3
+
+from dfktools.quests.professions.mining import CRYSTALVALE_GOLD_QUEST_CONTRACT_ADDRESS
 
 
 def get_current_timestamp() -> int:

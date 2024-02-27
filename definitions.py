@@ -10,9 +10,7 @@ CRITICAL_LOG_PATH = os.path.join(LOG_DIRECTORY, 'critical.log')
 PRIVATE_KEY_PATH = os.path.join(ROOT_DIRECTORY, 'private-key.pem')
 PUBLIC_KEY_PATH = os.path.join(ROOT_DIRECTORY, 'public-key.pem')
 
-#DFK_CHAIN_RPC = 'https://avax-dfk.gateway.pokt.network/v1/lb/6244818c00b9f0003ad1b619//ext/bc/q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi/rpc'
 DFK_CHAIN_RPC = 'https://subnets.avax.network/defi-kingdoms/dfk-chain/rpc'
-
 ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 GOLD_MINING_ADDRESS = '0x75912145f5cFEfb980616FA47B2f103210FaAb94'
 

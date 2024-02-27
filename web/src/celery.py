@@ -9,7 +9,6 @@ from web.src.static.loggers import logger
 celery = Celery(broker=os.getenv('CELERY_BROKER_URL'))
 celery.config_from_object('web.src.settings')
 celery.autodiscover_tasks(packages=['web.src.tasks'])
-
 task_base = celery.Task
 
 
@@ -18,8 +17,6 @@ def on_worker_ready(**_):
     logger.info('Worker starting up')
     clear_hero_data()
     set_all_account_hero_data()
-
-    # resolve_gold_quests(cancel_quests=True)
 
 
 

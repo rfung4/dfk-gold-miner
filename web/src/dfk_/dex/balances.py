@@ -1,7 +1,5 @@
 from dfktools.dex import erc20
 
-# ('0x66F5BfD910cd83d3766c4B39d13730C911b2D286', 'DFKSHVAS', 'Shvas Rune')
-
 
 def get_item(item: str) -> tuple:
     return next(filter(lambda a: a[1] == item, erc20.ITEMS))

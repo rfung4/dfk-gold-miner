@@ -1,5 +1,4 @@
 from sqlalchemy import Column, Integer, ForeignKey, LargeBinary, String, Boolean, DateTime, BigInteger
-
 from web.src.db.db import dfkBase, dfk_session_creator, dfk_engine
 from web.src.static.loggers import logger
 
@@ -19,33 +18,6 @@ class LocalHero(dfkBase):
     current_quest = Column(String, nullable=False)
     quest_start_time = Column(Integer, nullable=True)  # Epoch timestamp of quest end
     quest_end_time = Column(Integer, nullable=True)  # Epoch timestamp of quest end
-
-
-# class Quest(dfkBase):
-#     __tablename__ = 'quest'
-#
-#     quest_id = Column(Integer, primary_key=True, autoincrement=True, unique=True)
-#     current_quest = Column(String, nullable=False)
-
-# class QuestInstance
-#  quest_id
-#  Start time
-#  End time
-
-# class Quest(dfkBase):
-#     __tablename__ = 'quest'
-#
-#     # quest_id
-#     # Profession
-#     # Level
-#
-#     pass
-#
-
-# class Profession
-# short_name
-# name
-#
 
 
 class Account(dfkBase):
